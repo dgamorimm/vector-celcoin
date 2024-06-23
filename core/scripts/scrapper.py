@@ -4,6 +4,7 @@ from core.scripts.web.tools import Action
 from core.scripts.web.elements import TagClass, TagId, TagCss
 from dotenv import load_dotenv
 from tqdm import tqdm
+from datetime import datetime
 import pandas as pd
 import os
 
@@ -21,6 +22,16 @@ class Scrapper:
             url=os.getenv('URL_REPORT', None),
             load_time=7
         )
+        
+    def __filter_date(self):
+        self.__action.click(self.__tag_css.filter_date)
+        self.__action.click(self.__tag_id.btn_period)
+        self.__action.text_clear(self.__tag_id.input_period)
+        start_date = '01/01/2020 00:00 - '
+        end_date = datetime.now().strftime('%d/%m/%Y %H:%M')
+        period = start_date + end_date
+        self.__action.text_input(self.__tag_id.input_period, period, 'lazy')
+        self.__action.click(self.__tag_css.confirm_filter_date)
     
     def __click_filter_document(self):
         self.__action.click(self.__tag_css.filter_docs)
@@ -45,13 +56,15 @@ class Scrapper:
         
     def execute(self, documents: list[str], df : pd.DataFrame) -> pd.DataFrame:
         self.__access_report()
-        df_output = {'document': [], 'text': []}
+        self.__filter_date()
+        output = {'document': [], 'text': []}
         for document in tqdm(documents):
             self.__click_filter_document()
             self.__search_document(document)
             text = self.__get_text()
             
-            df_output['document'].append(document)
-            df_output['text'].append(text)
+            output['document'].append(document)
+            output['text'].append(text)
         
+        df_output  = pd.DataFrame(output)
         return self.__save_dataframe(df, df_output)

@@ -90,7 +90,7 @@ class Action():
             sleep(5)
             attempts =+ 1
             if attempts <= qty_attempts:
-                return self.click_element(click_tag, attempts)
+                return self.click(click_tag=click_tag, attempts=attempts)
             else:
                 raise('Não foi possivel clicar no elemento')
             
