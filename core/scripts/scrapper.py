@@ -31,6 +31,7 @@ class Scrapper:
         end_date = datetime.now().strftime('%d/%m/%Y %H:%M')
         period = start_date + end_date
         self.__action.text_input(self.__tag_id.input_period, period, 'lazy')
+        self.__action.click(self.__tag_css.btn_apply_period)
         self.__action.click(self.__tag_css.confirm_filter_date)
     
     def __click_filter_document(self):

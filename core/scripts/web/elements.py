@@ -27,4 +27,5 @@ class TagCss:
         self.text_content = (By.CSS_SELECTOR, ".card-body.fs-8")
         
         self.filter_date = (By.CSS_SELECTOR, ".btn.btn-custom.btn-primary.btn-xs.sm-3.drawer-toggle-link.btn-activate-filter.btn-cel_onboarding")
+        self.btn_apply_period = (By.CSS_SELECTOR, ".applyBtn.btn.btn-sm.btn-primary")
         self.confirm_filter_date = (By.CSS_SELECTOR, ".btn.btn-primary.btnAplicarFiltro.btn-block.btn.btn-xs")
