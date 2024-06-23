@@ -9,10 +9,7 @@ def __read_file() -> pd.DataFrame:
     """Função para ler o arquivo de entrada"""
     folder = os.path.join(os.getcwd(),'data', 'input')
 
-    # Listar todos os arquivos na pasta
     files = os.listdir(folder)
-
-    # Filtrar apenas os arquivos CSV
     csv_files = [file for file in files if file.endswith('.csv')]
 
     for file in csv_files:
