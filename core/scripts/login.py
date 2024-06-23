@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-def login(driver : Driver):
+def login(driver : Driver ):
     action = Action(driver)
     tag_name = TagName()
     tag_class = TagClass()
@@ -15,7 +15,7 @@ def login(driver : Driver):
         url=os.getenv('URL_LOGIN', None),
         load_time=7
     )
-    
+
     action.login(
         username_tag=tag_name.username,
         password_tag=tag_name.password,
@@ -23,3 +23,5 @@ def login(driver : Driver):
         username=os.getenv('CELCOIN_USR', None),
         password=os.getenv('CELCOIN_PWD', None)
     )
+    
+    input("Após colocar o MFA, pressione ENTER para continuar...")
