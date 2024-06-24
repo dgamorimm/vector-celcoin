@@ -5,12 +5,12 @@ class Driver:
     def __init__(self):
         pass
     
-    def _get_driver(self):
-        driver = uc.Chrome()
+    def _get_driver(self, options : uc.ChromeOptions):
+        driver = uc.Chrome(options=options)
         return driver
 
     def _options(self):
-        options = webdriver.ChromeOptions()
+        options = uc.ChromeOptions()
         options.add_argument("--flag-switches-begin")
         options.add_argument("--flag-switches-end")
         options.add_argument("--origin-trial-disabled-features=WebGPU")
@@ -23,12 +23,10 @@ class Driver:
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-gpu")
         options.add_argument("--ignore-certificate-errors")
-        # options.add_argument('--blink-settings=imagesEnabled=false')
-        options.add_experimental_option('useAutomationExtension', False)
-        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_argument('--blink-settings=imagesEnabled=false')
         return options
     
     def get(self):
-        driver = self._get_driver()
+        driver = self._get_driver(self._options())
         driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
         return driver
