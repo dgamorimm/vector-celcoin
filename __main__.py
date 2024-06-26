@@ -2,6 +2,7 @@ from core.scripts.web.driver import Driver
 from core.scripts.input import get_inputs
 from core.scripts.login import login
 from core.scripts.scrapper import Scrapper
+from core.scripts.output import save_dataframe
 
 if __name__ == '__main__':
     df, documents = get_inputs()
@@ -12,4 +13,4 @@ if __name__ == '__main__':
     scrapper = Scrapper(driver)
     df = scrapper.execute(documents, df)
     
-    df.to_excel('output.xlsx', index=False, header=True)
+    save_dataframe(df)

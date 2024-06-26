@@ -1,5 +1,14 @@
 from selenium.webdriver.common.by import By
 
+
+class TagXPath:
+    
+    def __init__(self) -> None:
+        
+        self.text_datetime = (By.XPATH, '//*[@id="drawer_push_nav_kyc"]/div[2]/div[2]/div[1]/div[2]/div/div/div/div/div[1]/div/div/div[1]/strong')
+        self.text_status = (By.XPATH, '//*[@id="drawer_push_nav_kyc"]/div[2]/div[2]/div[1]/div[2]/div/div/div/div/div[1]/div/div/div[2]/span')
+        self.text_content = (By.XPATH, '//*[@id="drawer_push_nav_kyc"]/div[2]/div[2]/div[1]/div[2]/div/div/div/div/div[1]/div')
+
 class TagId:
     
     def __init__(self) -> None:
