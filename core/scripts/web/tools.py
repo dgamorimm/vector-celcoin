@@ -64,7 +64,7 @@ class Action():
         self.find(password_tag).send_keys(password)
         # self.find(password_tag).send_keys(Keys.ENTER)
         self.click(login_tag, 2)
-        sleep(20)
+        sleep(10)
 
     def frame_switch_id(self, id):
         driver = self.driver
@@ -90,7 +90,7 @@ class Action():
             sleep(5)
             attempts =+ 1
             if attempts <= qty_attempts:
-                return self.click_element(click_tag, attempts)
+                return self.click(click_tag=click_tag, attempts=attempts)
             else:
                 raise('Não foi possivel clicar no elemento')
             
@@ -105,3 +105,6 @@ class Action():
         alert = WebDriverWait(self.driver, timeout).until(alert_is_present(),
                                     'Tempo limite esgotado aguardando o pop-up de alerta aparecer.')
         alert.accept()
+    
+    def get_content(self, tag_text):
+        return self.find(tag_text).text
